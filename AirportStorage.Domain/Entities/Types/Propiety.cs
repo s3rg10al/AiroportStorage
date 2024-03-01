@@ -9,7 +9,7 @@ namespace AirportStorage.Domain.Entities.Types
     /// <summary>
     /// Propiedad de la Comapañia
     /// </summary>
-    public enum Propiety //TODO:Poner todas las propiedades en mayuscula
+    public enum Propiety 
     {
        /// <summary>
        /// Privada, Tipo de Propiedad

@@ -10,8 +10,7 @@ namespace AirportStorage.Domain.Entities.Planes
     /// <summary>
     /// Modela un Avion
     /// </summary>
-    public class Planes // TODO: Hacer interface persona 
-        //TODO: crear clase propietario
+    public abstract class Planes // TODO: Revisar que todo este en inlges
     {
        
         #region Properties
@@ -35,17 +34,17 @@ namespace AirportStorage.Domain.Entities.Planes
         /// cantidad de kilometros totales recorridos por el avion
         /// </summary>
 
-        public int CantKmsTotales { get; set; }
+        public uint CantKmsTotales { get; set; }
 
         /// <summary>
         /// cantidad de kilometros totales recorridos por el avion desde su ultimo mantenimiento
         /// </summary>
-        public int CantKmsDesdeMant { get; set; }
+        public uint CantKmsDesdeMant { get; set; }
 
         /// <summary>
         /// cantidad de kilometros a los cuales al avion se le debe realizar mantenimineto 
         /// </summary>
-        public int CantKmsPlanMant { get;}
+        public uint CantKmsPlanMant { get;}
 
         #endregion
         #region Constructor

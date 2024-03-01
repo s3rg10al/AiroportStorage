@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AirportStorage.Domain.Entities.Store { 
-    ///<summary>
-    ///Modela un Almacen
-    ///</summary>
+namespace AirportStorage.Domain.Entities.Store
+
+///<summary>
+///Modela un Almacen
+///</summary>
+{ 
      public class Store { 
         #region Properties
         /// <summary>
