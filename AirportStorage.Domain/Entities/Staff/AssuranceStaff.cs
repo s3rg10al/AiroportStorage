@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AirportStorage.Domain.Entities.hangars;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +29,13 @@ namespace AirportStorage.Domain.Entities.Staff
         ///Pago por horas extras
         ///</summary>
         public uint PagoxHorasExtras { get; set; }
+
+        [NotMapped]
+        public Hangar Hangar { get; set; }
+        /// <summary>
+        /// Identificador del Hangar al que pertenece
+        /// </summary>
+        public int HangarId { get; set; }
         #endregion
         #region Methods
         ///<summary>
@@ -51,6 +60,12 @@ namespace AirportStorage.Domain.Entities.Staff
             CantHorasTrabajadas = 0;
             CantHorasExtras = 0;
         }
+
+        /// <summary>
+        /// Constructor requerido por Entity Framework
+        /// </summary>
+
+        protected AssuranceStaff () { }
         #endregion
 
 

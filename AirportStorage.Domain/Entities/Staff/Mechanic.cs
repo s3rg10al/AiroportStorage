@@ -1,6 +1,7 @@
 ﻿using AirportStorage.Domain.Entities.Types;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,17 @@ namespace AirportStorage.Domain.Entities.Staff
         ///Pago por cada reparacion hecha
         ///</summary>
         public uint PagoxRep { get; set; }
+
+        [NotMapped]
+        /// <summary>
+        /// Taller al que pertenece
+        /// </summary>
+        public Workshop.Workshop Workshop { get; set; }
+        /// <summary>
+        /// Identificador del Taller
+        /// </summary>
+        public int WorkshopId { get; set; }
+
         #endregion
         #region Methods
         ///<summary>
@@ -39,7 +51,11 @@ namespace AirportStorage.Domain.Entities.Staff
             PagoxRep = pagoXrep;
             CantRep=0;
         }
+        /// <summary>
+        /// Constructor requerido por Entity Framework
+        /// </summary>
 
+        protected Mechanic () { }
         #endregion
 
     }

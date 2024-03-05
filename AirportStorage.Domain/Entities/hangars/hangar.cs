@@ -1,12 +1,17 @@
-﻿using System;
+﻿using AirportStorage.Domain.Entities.Common;
+using AirportStorage.Domain.Entities.company;
+using AirportStorage.Domain.Entities.Planes;
+using AirportStorage.Domain.Entities.Staff;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AirportStorage.Domain.Entities.hangars
 {
-    public class Hangar 
+    public class Hangar : Entity 
     {
         #region propierties
         
@@ -18,33 +23,47 @@ namespace AirportStorage.Domain.Entities.hangars
         /// dice si esta lleno el hangar osea si alcanzo la cantmax
         /// </summary>
         public bool isfull;
+        
+        [NotMapped]
         /// <summary>
         /// lista de aviones
         /// </summary>
-        //public List<Avion>aviones { get; }
+        public List<Commercial> CommercialsPlanes { get; set; }
+        
+        [NotMapped]
         /// <summary>
         /// lista que contiene el personal de aseguramiento de cada hangar
         /// </summary>
-        //public List<PersonalAseguramiento> personal { get; }
+        public List<AssuranceStaff> assuranceStaffs { get; set; }
 
+        [NotMapped]
+        /// <summary>
+        /// Relacion con la compañia a que pertece
+        /// </summary>
+        public Company Company { get; set; }
+        
+        /// <summary>
+        /// Identificxador de la compañia
+        /// </summary>
+        public int CompanyId { get; set; }
 
         #endregion
-
+            
 
         #region methods
         /// <summary>
         /// una funcion que devuelve la cantidad personal de aseguramiento osea cantidad de trabajadores 
         /// </summary>
         /// <returns></returns>
-        /*public int cantPersonalAseguramiento()
+        public int cantPersonalAseguramiento()
         {
-            return personal.Count;
+            return assuranceStaffs.Count;
         }
 
         public int cantAviones()
         {
-            return aviones.Count;
-        }*/
+            return CommercialsPlanes.Count;
+        }
 
         #endregion
 
@@ -57,9 +76,14 @@ namespace AirportStorage.Domain.Entities.hangars
         {
             capMax = InitialCantMax;
             isfull = false;
-           // aviones = new List<Avion>();
-           //personal = new List<PersonalAseguramiento>();
+           CommercialsPlanes = new List<Commercial>();
+           assuranceStaffs = new List<AssuranceStaff>();
         }
+        /// <summary>
+        /// Constructor requerido por Entity Framework
+        /// </summary>
+
+        protected Hangar() { }
         #endregion
 
     }

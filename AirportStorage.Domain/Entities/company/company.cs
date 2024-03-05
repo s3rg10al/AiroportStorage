@@ -1,13 +1,16 @@
-﻿using AirportStorage.Domain.Entities.hangars;
+﻿using AirportStorage.Domain.Entities.Common;
+using AirportStorage.Domain.Entities.hangars;
+using AirportStorage.Domain.Entities.Types;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AirportStorage.Domain.Entities.company
 {
-    public class Company
+    public class Company : Entity
 
 
     {
@@ -32,16 +35,18 @@ namespace AirportStorage.Domain.Entities.company
         /// <summary>
         /// lista de hangares
         /// </summary>
+        [NotMapped]
         public List<Hangar> Hangars { get; }
+
 
         /// <summary>
         /// lista de talleres que posee la comp
         /// </summary>
-        //public List<(Taller)> taller { get; }
+        public List<Workshop.Workshop> Workshops { get; set; }
 
-        //public propiety companyType;
+        public Propiety companyType;
 
-        //public List<taller> tallers = new List<taller>;
+        
         #endregion
 
 
@@ -69,9 +74,14 @@ namespace AirportStorage.Domain.Entities.company
         {
             Pais= InitialPais;
             Hangars= new List<Hangar>();
-            //taller = new List<Taller>();
+            Workshops = new List<Workshop.Workshop>();
         }
-
+        
+        /// <summary>
+        /// Constructor requerido por Entity Framework
+        /// </summary>
+        
+        protected Company() { } 
 
         #endregion
 

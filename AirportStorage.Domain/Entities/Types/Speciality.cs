@@ -9,7 +9,7 @@ namespace AirportStorage.Domain.Entities.Types
     /// <summary>
     /// Especialialidad del taller 
     /// </summary>
-    public enum Especialidad
+    public enum Speciality
     {
         /// <summary>
         /// mecanica, Tipo de taller y especialidad de los mecanicos

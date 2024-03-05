@@ -9,7 +9,7 @@ namespace AirportStorage.Domain.Entities.Types
     /// <summary>
     /// Estado de vuelo en el que se encuentra un avion
     /// </summary>
-    public enum EstadoAvion
+    public enum FlightStatus
     {
         /// <summary>
         /// tierra, posible estado de un avion

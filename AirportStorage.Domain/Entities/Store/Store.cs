@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AirportStorage.Domain.Entities.Common;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Formats.Asn1;
 using System.Linq;
 using System.Text;
@@ -11,7 +13,8 @@ namespace AirportStorage.Domain.Entities.Store
 ///Modela un Almacen
 ///</summary>
 { 
-     public class Store { 
+     public class Store : Entity
+    { 
         #region Properties
         /// <summary>
         /// Cantidad de piezas en existencia en el Almacen
@@ -21,6 +24,14 @@ namespace AirportStorage.Domain.Entities.Store
         ///Fecha del ultimo inventario
         ///</summary>
         public DateTime UltimoInv { get; set; }
+       
+        [NotMapped]
+        /// <summary>
+        /// Taller al que pertenece
+        /// </summary>
+        public Workshop.Workshop Workshop { get; set; }
+        
+        public int WorkshopId { get; set; }
         #endregion
 
         #region Constructor
@@ -32,6 +43,11 @@ namespace AirportStorage.Domain.Entities.Store
             UltimoInv = lastInv;
             CantPiezas = 0;
         }
+        /// <summary>
+        /// Constructor requerido por Entity Framework
+        /// </summary>
+
+        protected Store () { }
         #endregion
 
 

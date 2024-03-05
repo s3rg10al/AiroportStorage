@@ -1,8 +1,10 @@
-﻿using AirportStorage.Domain.Entities.hangars;
+﻿using AirportStorage.Domain.Entities.Common;
+using AirportStorage.Domain.Entities.hangars;
 using AirportStorage.Domain.Entities.Staff;
 using AirportStorage.Domain.Entities.Types;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,13 +14,20 @@ namespace AirportStorage.Domain.Entities.Workshop
 /// Modela un Taller
 ///  </summary>
 {
-    public class Workshop
+    public class Workshop : Entity
     {
         #region Properties
+        [NotMapped]
         ///<summary>
         ///Almacen del Taller
         ///</summary>
-      public Store stor {  get; set; }
+        public Store.Store Store {  get; set; }
+        /// <summary>
+        /// identificador de la tienda
+        /// </summary>
+        public int StoreId { get; set; }
+
+        [NotMapped]
         ///<summary>
         ///Lista de los Mecanicos que trabajan en ese taller
         ///</summary>
@@ -34,7 +43,7 @@ namespace AirportStorage.Domain.Entities.Workshop
         ///<summary>
         ///Que tipo de taller es
         ///</summary>
-        public Especialidad specialty { get; set; }
+        public Speciality specialty { get; set; }
         #endregion
         #region Constructor
         /// <summary>
@@ -49,6 +58,11 @@ namespace AirportStorage.Domain.Entities.Workshop
             
             
         }
+        /// <summary>
+        /// Constructor requerido por Entity Framework
+        /// </summary>
+
+        protected Workshop () { }
         #endregion
 
 

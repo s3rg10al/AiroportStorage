@@ -1,9 +1,11 @@
 ﻿using AirportStorage.Domain.Entities.Types;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AirportStorage.Domain.Entities.Owner;
 
 namespace AirportStorage.Domain.Entities.Planes
 {
@@ -13,9 +15,18 @@ namespace AirportStorage.Domain.Entities.Planes
     public class Jets : Planes
     {
         #region Propeties
-        public NivelDeLujo NivelDeLujo { get; set; }
+        public LuxuryLevel LuxuryLevel { get; set; }
+       
+        [NotMapped]
+        /// <summary>
+        /// Propietario del Jet
+        /// </summary>
+        public Owner.Owner Owner { get; set; }
 
-        public string Propietario { get; set; }
+        /// <summary>
+        /// Identificacion del Propietario
+        /// </summary>
+        public int OwnerId { get; set; }
         #endregion
         #region Constructor
         /// <summary>
@@ -26,11 +37,16 @@ namespace AirportStorage.Domain.Entities.Planes
         /// <param name="cantkmsPM">cantidad de kilometros a los cuales al avion se le debe realizar mantenimineto kilometraje</param>
         /// <param name="propietario">propietario</param>
 
-        public Jets(string modelo, string serialnumber, int cantkmsPM, string propietario = "") : base(modelo, serialnumber, cantkmsPM)
+        public Jets(string modelo, string serialnumber, uint cantkmsPM) : base(modelo, serialnumber, cantkmsPM)
         {
-            Propietario = propietario;
-            NivelDeLujo = NivelDeLujo.Estandar;
+            
+            LuxuryLevel = LuxuryLevel.Estandar;
         }
+        /// <summary>
+        /// Constructor requerido por Entity Framework
+        /// </summary>
+
+        protected Jets () { }
         #endregion
     }
 }

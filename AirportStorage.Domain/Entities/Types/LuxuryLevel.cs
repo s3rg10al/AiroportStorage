@@ -9,7 +9,7 @@ namespace AirportStorage.Domain.Entities.Types
     /// <summary>
     /// nivel de lujo que presenta un jet
     /// </summary>
-    public enum NivelDeLujo
+    public enum LuxuryLevel
     {
         /// <summary>
         /// alto, clasificacion del nuvel de lujo de los jets

@@ -1,4 +1,5 @@
 ﻿using AirportStorage.Domain.Abstract;
+using AirportStorage.Domain.Entities.Common;
 using AirportStorage.Domain.Entities.Types;
 
 namespace AirportStorage.Domain.Entities.Staff
@@ -6,12 +7,9 @@ namespace AirportStorage.Domain.Entities.Staff
 ///Prototipo basico del personal
 ///</summary>
 {
-    public abstract class Staff
+    public abstract class Staff : Entity , Person_inf
     #region Properties
-    {///<summary>
-     /// Datos personales del trabajador
-     /// </summary>
-        public Personal_inf Info { get; set; }
+    {
         ///<summary>
         ///Experiencia del trabajador
         ///</summary>
@@ -27,7 +25,16 @@ namespace AirportStorage.Domain.Entities.Staff
         ///<sumary>
         ///Salario que gana este trabajador
         ///</sumary>
-      public uint Sueldo { get; set; }
+        public uint Sueldo { get; set; }
+
+        public string Name { get; set; }
+
+        public uint Id { get; }
+
+        public string Adress { get; set; }
+
+        public uint PhoneNumb { get; set; }
+
         #endregion
         #region Constructor
         /// <summary>
@@ -38,15 +45,20 @@ namespace AirportStorage.Domain.Entities.Staff
         /// <param name="cargo">Cargo que ocupa </param>
         public Staff(string nomb, uint id, string cargo)
         {
-            Info.Name = nomb;
-            Info.Id = id;
+            Name = nomb;
+            Id = id;
             Cargo = cargo;
             Exp = Experience.Noob;
             Years = 0;
         }
+        /// <summary>
+        /// Constructor requerido por Entity Framework
+        /// </summary>
 
+        protected Staff () { }
         #endregion
 
 
 
     }
+}
