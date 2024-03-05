@@ -1,4 +1,4 @@
-﻿using AirportStorage.Domain.Entities.hangars;
+﻿using AirportStorage.Domain.Entities.Hangar;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -24,7 +24,7 @@ namespace AirportStorage.Domain.Entities.Planes
         /// <summary>
         /// hangar al que pertenece el avion comercial 
         /// </summary>
-        public Hangar Hangar  { get; set; }
+        public Hangar.Hangar Hangar  { get; set; }
         /// <summary>
         /// Identificador del Hangar al que pertece
         /// </summary>
@@ -39,9 +39,10 @@ namespace AirportStorage.Domain.Entities.Planes
         /// <param name="serialnumber">Numero de serie del avion</param>
         /// <param name="cantkmsPM">cantidad de kilometros a los cuales al avion se le debe realizar mantenimineto kilometraje</param>
         /// <param name="capacidadPasajeros">capacidad de pasajeros</param>
-        public Commercial(string modelo, string serialnumber, uint cantkmsPM, uint passengerscapacity) : base(modelo, serialnumber, cantkmsPM)
+        public Commercial(string modelo, string serialnumber, uint cantkmsPM, uint passengerscapacity , int hangarId) : base(modelo, serialnumber, cantkmsPM)
         {
             PassengersCapacity = passengerscapacity;
+            HangarId = hangarId;
         
         }
 

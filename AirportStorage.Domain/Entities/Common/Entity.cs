@@ -16,5 +16,10 @@ namespace AirportStorage.Domain.Entities.Common
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         #endregion
+        
+
+        #region construct
+        
+        #endregion
     }
 }

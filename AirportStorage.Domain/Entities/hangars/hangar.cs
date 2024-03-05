@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AirportStorage.Domain.Entities.hangars
+namespace AirportStorage.Domain.Entities.Hangar
 {
     public class Hangar : Entity 
     {
@@ -72,12 +72,13 @@ namespace AirportStorage.Domain.Entities.hangars
         /// constructor de la clase Hangar 
         /// </summary>
         /// <param name="InitialCantMax">se debe iniciar la cantidad maxima de aviones</param>
-        public Hangar(int InitialCantMax)
+        public Hangar(int InitialCantMax, int companyId)
         {
             capMax = InitialCantMax;
             isfull = false;
            CommercialsPlanes = new List<Commercial>();
            assuranceStaffs = new List<AssuranceStaff>();
+            CompanyId = companyId;
         }
         /// <summary>
         /// Constructor requerido por Entity Framework

@@ -1,5 +1,5 @@
 ﻿using AirportStorage.Domain.Entities.Common;
-using AirportStorage.Domain.Entities.hangars;
+using AirportStorage.Domain.Entities.Hangar;
 using AirportStorage.Domain.Entities.Staff;
 using AirportStorage.Domain.Entities.Types;
 using System;
@@ -22,10 +22,21 @@ namespace AirportStorage.Domain.Entities.Workshop
         ///Almacen del Taller
         ///</summary>
         public Store.Store Store {  get; set; }
-        /// <summary>
+
+        // <summary>
         /// identificador de la tienda
         /// </summary>
         public int StoreId { get; set; }
+
+        [NotMapped]
+        ///<summary>
+        ///relacion de la company
+        ///</summary>
+        public company.Company company { get; set; }
+        /// <summary>
+        /// identificador de company
+        /// </summary>
+        public int CompanyId { get; set; }
 
         [NotMapped]
         ///<summary>
@@ -50,11 +61,13 @@ namespace AirportStorage.Domain.Entities.Workshop
         ///Inicializa un objeto <see cref="Workshop"/>
         /// </summary>
         /// <param name="ability">Capacidad del Taller</param>
-        public Workshop(uint ability)
+        public Workshop(uint ability, int storeId, int companyId)
         {
             Ability=ability;
             IsAbility= true;
-             Mech = new List<Mechanic>();
+            Mech = new List<Mechanic>();
+            StoreId=storeId;
+            CompanyId=companyId;
             
             
         }

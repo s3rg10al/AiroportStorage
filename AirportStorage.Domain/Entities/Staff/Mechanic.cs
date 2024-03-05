@@ -46,10 +46,11 @@ namespace AirportStorage.Domain.Entities.Staff
         /// <param name="id">Numero de identificacion</param>
         /// <param name="cargo">Cargo que ocupa</param>
 
-        public Mechanic(uint pagoXrep,string nomb,uint id,string cargo) : base(nomb,id,cargo)
+        public Mechanic(uint pagoXrep,string nomb,uint id,string cargo, int workshopId) : base(nomb,id,cargo)
         {
             PagoxRep = pagoXrep;
             CantRep=0;
+            WorkshopId = workshopId;
         }
         /// <summary>
         /// Constructor requerido por Entity Framework

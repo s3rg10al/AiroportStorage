@@ -39,9 +39,10 @@ namespace AirportStorage.Domain.Entities.Store
         ///Inicializa un objeto <see cref="Store"/>
         ///</sumary>
         /// <param name="lastInv">Fecha del ultimo inventario</param>
-        public Store( uint cantPiezas, DateTime lastInv ) { 
+        public Store( uint cantPiezas, DateTime lastInv, int workshopId) { 
             UltimoInv = lastInv;
             CantPiezas = 0;
+            WorkshopId = workshopId;
         }
         /// <summary>
         /// Constructor requerido por Entity Framework

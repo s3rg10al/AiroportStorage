@@ -1,5 +1,5 @@
 ﻿using AirportStorage.Domain.Entities.Common;
-using AirportStorage.Domain.Entities.hangars;
+using AirportStorage.Domain.Entities.Hangar;
 using AirportStorage.Domain.Entities.Types;
 using System;
 using System.Collections.Generic;
@@ -36,12 +36,13 @@ namespace AirportStorage.Domain.Entities.company
         /// lista de hangares
         /// </summary>
         [NotMapped]
-        public List<Hangar> Hangars { get; }
+        public List<Hangar.Hangar> Hangars { get; }
 
 
         /// <summary>
         /// lista de talleres que posee la comp
         /// </summary>
+        [NotMapped]
         public List<Workshop.Workshop> Workshops { get; set; }
 
         public Propiety companyType;
@@ -73,7 +74,7 @@ namespace AirportStorage.Domain.Entities.company
         public Company(string InitialPais)
         {
             Pais= InitialPais;
-            Hangars= new List<Hangar>();
+            Hangars = new List<Hangar.Hangar>();
             Workshops = new List<Workshop.Workshop>();
         }
         

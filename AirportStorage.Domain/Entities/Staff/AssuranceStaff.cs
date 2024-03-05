@@ -1,4 +1,4 @@
-﻿using AirportStorage.Domain.Entities.hangars;
+﻿using AirportStorage.Domain.Entities.Hangar;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,7 +31,7 @@ namespace AirportStorage.Domain.Entities.Staff
         public uint PagoxHorasExtras { get; set; }
 
         [NotMapped]
-        public Hangar Hangar { get; set; }
+        public Hangar.Hangar Hangar { get; set; }
         /// <summary>
         /// Identificador del Hangar al que pertenece
         /// </summary>
@@ -53,12 +53,13 @@ namespace AirportStorage.Domain.Entities.Staff
         /// <param name="id">Numero de identificacion</param>
         /// <param name="cargo">Cargo que ocupa</param>
 
-        public AssuranceStaff(uint pagoXhoras,uint pagoXhorasextras, string nomb, uint id, string cargo) : base(nomb, id, cargo)
+        public AssuranceStaff(uint pagoXhoras,uint pagoXhorasextras, string nomb, uint id, string cargo, int hangarId) : base(nomb, id, cargo)
         {
             PagoxHoras = pagoXhoras;
             PagoxHorasExtras = pagoXhorasextras;
             CantHorasTrabajadas = 0;
             CantHorasExtras = 0;
+            HangarId = hangarId;
         }
 
         /// <summary>
