@@ -22,8 +22,10 @@ namespace AirportStorage.DataAccess.Repositories
         /// </summary>
         protected ApplicationContext? _context;
 
-        public ApliccationRepository()
+        public ApliccationRepository(string connectionString)
         {
+            _connectionString = connectionString;
+           _context = null;
         }
 
         public bool IsInTransaction => _context is not null;
