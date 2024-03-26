@@ -1,4 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using AirportStorage.DataAcces.Tests.Utilities;
+using AirportStorage.DataAccess.Abstract.Companys;
+using AirportStorage.DataAccess.Repositories;
+using AirportStorage.Domain.Entities.company;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +18,7 @@ namespace AirportStorage.DataAcces.Tests
         
         public CompanyTests()
         {
-            _companyRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
+            _companyRepository = new ApliccationRepository(ConnectionStringProvider.GetConnectionString());
         }
         
         [DataRow(cuba)]

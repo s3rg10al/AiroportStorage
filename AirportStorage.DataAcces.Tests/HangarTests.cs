@@ -1,4 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using AirportStorage.DataAcces.Tests.Utilities;
+using AirportStorage.DataAccess.Abstract.Companys;
+using AirportStorage.DataAccess.Abstract.hangars;
+using AirportStorage.DataAccess.Repositories;
+using AirportStorage.Domain.Entities.company;
+using AirportStorage.Domain.Entities.Hangar;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +20,7 @@ namespace AirportStorage.DataAcces.Tests
 
         public HangarTests()
         {
-            _hangarRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
+            _hangarRepository = new ApliccationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
         [DataRow(200)]
@@ -24,7 +30,7 @@ namespace AirportStorage.DataAcces.Tests
         {
             //Arrange
             _hangarRepository.BeginTransaction();
-            Company company = ((IcompanyRepository)_hangarRepository).Get(companyId);
+            Company company = ((ICompanyRepository)_hangarRepository).Get(companyId);
             Assert.IsNotNull(company);
 
             //Execute
@@ -70,7 +76,7 @@ namespace AirportStorage.DataAcces.Tests
             Assert.IsNotNull(loadedHangar);
             var newHangar = new Hangar(InitialCantMax) { id = loadedHangar.Id };
             _hangarRepository.Update(newHangar);
-            var modifyedHangar = _HangarRepository.Get(id);
+            var modifyedHangar = _hangarRepository.Get(id);
             _hangarRepository.CommitTransaction();
 
             //Assert
