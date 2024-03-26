@@ -72,13 +72,13 @@ namespace AirportStorage.Domain.Entities.Hangar
         /// constructor de la clase Hangar 
         /// </summary>
         /// <param name="InitialCantMax">se debe iniciar la cantidad maxima de aviones</param>
-        public Hangar(int InitialCantMax, int companyId)
+        public Hangar(int InitialCantMax, Company company)
         {
             capMax = InitialCantMax;
             isfull = false;
            CommercialsPlanes = new List<Commercial>();
            assuranceStaffs = new List<AssuranceStaff>();
-            CompanyId = companyId;
+            CompanyId = company.Id;
         }
         /// <summary>
         /// Constructor requerido por Entity Framework

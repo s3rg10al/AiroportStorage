@@ -20,16 +20,18 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(200)]
         [DataRow(300)]
         [TestMethod]
-        public void Can_Create_Hangar(InitialCantMax )
+        public void Can_Create_Hangar(int InitialCantMax )
         {
             //Arrange
-            _companyRepository.BeginTransaction();
+            _hangarRepository.BeginTransaction();
+            Company company = ((IcompanyRepository)_hangarRepository).Get(companyId);
+            Assert.IsNotNull(company);
 
             //Execute
-            Hangar newHangar = _HangarRepository.Create(InitialCantMax);
+            Hangar newHangar = _hangarRepository.Create(InitialCantMax);
             _hangarRepository.PartialCommit();  //generando id 
             Hangar? loadedHangar = _hangarRepository.Get(newHangar.Id);
-            _HangarRepository.CommitTransaction();
+            _hangarRepository.CommitTransaction();
 
             //Assert
             Assert.IsNotNull(loadedHangar);

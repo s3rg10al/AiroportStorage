@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AirportStorage.Domain.Entities.company;
 
-namespace AirportStorage.DataAccess.Abstract.Company
+namespace AirportStorage.DataAccess.Abstract.Companys
 {
     public interface ICompanyRepository : IRepository
     {

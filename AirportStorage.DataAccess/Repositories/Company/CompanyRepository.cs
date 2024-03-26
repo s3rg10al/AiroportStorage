@@ -1,4 +1,5 @@
-﻿using AirportStorage.Domain.Entities.company;
+﻿using AirportStorage.DataAccess.Abstract.Companys;
+using AirportStorage.Domain.Entities.company;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace AirportStorage.DataAccess.Repositories
 {
     public partial class ApliccationRepository : ICompanyRepository
     {
-        Company Create(string InitialPais)
+        public Company Create(string InitialPais)
         {
             Company company = new Company(InitialPais);
             _context.Add(company);
@@ -21,19 +22,19 @@ namespace AirportStorage.DataAccess.Repositories
         }
 
 
-        Company? Get(int id)
+        Company? ICompanyRepository.Get(int id)
         {
             return _context.Set<Company>().Find(id);
         }
 
 
-        void Update(Company company)
+        public void Update(Company company)
         {
             _context.Update(company);
         }
 
 
-        void Delete(Company company)
+        public void Delete(Company company)
         {
             _context.Remove(company);
         }

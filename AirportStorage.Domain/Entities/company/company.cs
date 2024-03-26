@@ -71,7 +71,7 @@ namespace AirportStorage.Domain.Entities.company
         /// constructor de la clase company que establece el pais donde se encuentraw
         /// </summary>
         /// <param name="InitialPais">pais al que pertenece la compañia</param>
-        public Company(string InitialPais, string serialnumber)
+        public Company(string InitialPais)
         {
             Pais= InitialPais;
             Hangars = new List<Hangar.Hangar>();
