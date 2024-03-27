@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace AirportStorage.DataAcces.Tests
 {
+    /// <summary>
+    /// Para ver si logro el merge
+    /// </summary>
     public class HangarTests
     {
         private IHangarRepository _hangarRepository;
