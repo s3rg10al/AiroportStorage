@@ -14,7 +14,9 @@ namespace AirportStorage.DataAcces.Tests
     public class CompanyTests
     {
         private ICompanyRepository _companyRepository;
-
+        /// <summary>
+        /// Para ver si logro el merge
+        /// </summary>
         
         public CompanyTests()
         {
