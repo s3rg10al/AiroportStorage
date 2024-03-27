@@ -14,8 +14,8 @@ namespace AirportStorage.DataAccess.Abstract.Companys
         /// <summary>
         /// constructor de la clase company que establece el pais donde se encuentraw
         /// </summary>
-        /// <param name="InitialPais">pais al que pertenece la compañia</param>
-        Company Create(string InitialPais);
+        /// <param name="InitialCountry">pais al que pertenece la compañia</param>
+        Company Create(string InitialCountry);
 
         /// <summary>
         /// Obtiene una compagnia

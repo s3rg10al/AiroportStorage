@@ -21,8 +21,8 @@ namespace AirportStorage.DataAcces.Tests
             _companyRepository = new ApliccationRepository(ConnectionStringProvider.GetConnectionString());
         }
         
-        [DataRow(cuba)]
-        [DataRow(USA)]
+        [DataRow("cuba")]
+        [DataRow("USA")]
         [TestMethod]
         public void Can_Create_Company(string InitialCountry)
         {
@@ -37,7 +37,7 @@ namespace AirportStorage.DataAcces.Tests
 
             //Assert
             Assert.IsNotNull(loadedCompany);
-            Assert.AreEqual(loadedCompany.Currency, InitialCountry);
+            Assert.AreEqual(loadedCompany.Pais, InitialCountry);
             
 
         }
@@ -59,8 +59,8 @@ namespace AirportStorage.DataAcces.Tests
             Assert.IsNotNull(loadedCompany);
         }
 
-        [DataRow(1,cuba)]
-        [DataRow(2, USA)]
+        [DataRow(1,"panama")]
+        [DataRow(2, "inglaterra")]
         [TestMethod]
         public void Can_Update_Company(int id,string InitialCountry)
         {
@@ -70,13 +70,13 @@ namespace AirportStorage.DataAcces.Tests
             //Execute
             var loadedCompany = _companyRepository.Get(id);
             Assert.IsNotNull(loadedCompany);
-            var newCompany = new Company(InitialCountry) { id = loadedCompany.Id };
+            var newCompany = new Company(InitialCountry) { Id = loadedCompany.Id };
             _companyRepository.Update(newCompany);
             var modifyedCompany = _companyRepository.Get(id);
             _companyRepository.CommitTransaction();
 
             //Assert
-            Assert.AreEqual(modifyedCompany.Currency, InitialCountry);
+            Assert.AreEqual(modifyedCompany.Pais, InitialCountry);
           
 
 

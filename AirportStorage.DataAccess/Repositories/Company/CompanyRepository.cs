@@ -14,9 +14,9 @@ namespace AirportStorage.DataAccess.Repositories
 {
     public partial class ApliccationRepository : ICompanyRepository
     {
-        public Company Create(string InitialPais)
+        public Company Create(string InitialCountry)
         {
-            Company company = new Company(InitialPais);
+            Company company = new Company(InitialCountry);
             _context.Add(company);
             return company;
         }

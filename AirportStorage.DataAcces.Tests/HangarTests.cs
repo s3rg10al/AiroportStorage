@@ -23,25 +23,26 @@ namespace AirportStorage.DataAcces.Tests
             _hangarRepository = new ApliccationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow(200)]
-        [DataRow(300)]
+        [DataRow(200,2)]
+        [DataRow(300,2)]
         [TestMethod]
-        public void Can_Create_Hangar(int InitialCantMax )
+        public void Can_Create_Hangar(int InitialCantMax, int CompanyId )
         {
             //Arrange
             _hangarRepository.BeginTransaction();
-            Company company = ((ICompanyRepository)_hangarRepository).Get(companyId);
+            Company company = ((ICompanyRepository)_hangarRepository).Get(CompanyId);
             Assert.IsNotNull(company);
 
             //Execute
-            Hangar newHangar = _hangarRepository.Create(InitialCantMax);
+            Hangar newHangar = _hangarRepository.Create(InitialCantMax, company);
             _hangarRepository.PartialCommit();  //generando id 
             Hangar? loadedHangar = _hangarRepository.Get(newHangar.Id);
             _hangarRepository.CommitTransaction();
 
             //Assert
             Assert.IsNotNull(loadedHangar);
-            Assert.AreEqual(loadedHangar.Currency, InitialCantMax);
+            Assert.AreEqual(loadedHangar.capMax, InitialCantMax);
+            Assert.AreEqual(loadedHangar.CompanyId, CompanyId);
 
 
         }
@@ -74,13 +75,13 @@ namespace AirportStorage.DataAcces.Tests
             //Execute
             var loadedHangar = _hangarRepository.Get(id);
             Assert.IsNotNull(loadedHangar);
-            var newHangar = new Hangar(InitialCantMax) { id = loadedHangar.Id };
+            var newHangar = new Hangar(InitialCantMax, company) { Id = loadedHangar.Id };
             _hangarRepository.Update(newHangar);
             var modifyedHangar = _hangarRepository.Get(id);
             _hangarRepository.CommitTransaction();
 
             //Assert
-            Assert.AreEqual(modifyedHangar.Currency, InitialCantMax);
+            Assert.AreEqual(modifyedHangar.capMax, InitialCantMax);
 
 
 
