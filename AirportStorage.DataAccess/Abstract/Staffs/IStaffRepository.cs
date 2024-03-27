@@ -33,7 +33,7 @@ namespace AirportStorage.DataAccess.Abstract.Staffs
         /// <param name="id">Numero de identificacion</param>
         /// <param name="cargo">Cargo que ocupa</param>
         /// <returns></returns>
-        AssuranceStaff CreateAssuranceStaff(uint pagoXhoras, uint pagoXhorasextras, string nomb, uint id, string cargo, Hangar hangar);
+        AssuranceStaff CreateAssuranceStaff(uint pagoXhoras, uint pagoXhorasextras, string nomb, uint id, string cargo,Hangar hangar);
 
         /// <summary>
         /// Obtiene una persona
