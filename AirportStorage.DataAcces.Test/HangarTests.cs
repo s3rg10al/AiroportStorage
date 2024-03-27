@@ -78,7 +78,7 @@ namespace AirportStorage.DataAcces.Tests
             //Execute
             var loadedHangar = _hangarRepository.Get(id);
             Assert.IsNotNull(loadedHangar);
-            var newHangar = new Hangar(InitialCantMax, company) { Id = loadedHangar.Id };
+            var newHangar = new Hangar(InitialCantMax, Company) { Id = loadedHangar.Id };
             _hangarRepository.Update(newHangar);
             var modifyedHangar = _hangarRepository.Get(id);
             _hangarRepository.CommitTransaction();

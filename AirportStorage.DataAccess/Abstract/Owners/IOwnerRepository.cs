@@ -11,7 +11,7 @@ namespace AirportStorage.DataAccess.Abstract.Owners
     /// <summary>
     /// Define las operaciones a ralizar sobre una base de datos de Owner
     /// </summary>
-    public interface  IOwnerRepository
+    public interface  IOwnerRepository : IRepository
     {
         /// <summary>
         /// Crea un Dueno en BD

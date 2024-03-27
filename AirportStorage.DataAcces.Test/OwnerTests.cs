@@ -1,13 +1,8 @@
 ﻿using AirportStorage.DataAcces.Tests.Utilities;
-using AirportStorage.DataAccess.Abstract.Owner;
+using AirportStorage.DataAccess.Abstract.Owners;
 using AirportStorage.DataAccess.Repositories;
 using AirportStorage.Domain.Entities.Owner;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirportStorage.DataAcces.Tests
 {
@@ -32,14 +27,14 @@ namespace AirportStorage.DataAcces.Tests
             _ownerRepository.BeginTransaction();
 
             //Execute
-            Owner newOwner = _ownerRepository.Create(nomb,id,cantjets);
+            Owner newOwner = _ownerRepository.CreateOwner(nomb,id,cantjets);
             _ownerRepository.PartialCommit();  //generando id 
             Owner? loadedOwner = _ownerRepository.Get(newOwner.Id);
             _ownerRepository.CommitTransaction();
 
             //Assert
             Assert.IsNotNull(loadedOwner);
-            Assert.AreEqual(loadedOwner.Id, id);
+            Assert.AreEqual(loadedOwner.CI, id);
             Assert.AreEqual(loadedOwner.Name, nomb);
 
 

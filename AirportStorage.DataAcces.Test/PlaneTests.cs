@@ -1,5 +1,5 @@
 ﻿using AirportStorage.DataAcces.Tests.Utilities;
-using AirportStorage.DataAccess.Abstract.Hangar;
+using AirportStorage.DataAccess.Abstract.hangars;
 using AirportStorage.DataAccess.Abstract.Owners;
 using AirportStorage.DataAccess.Abstract.Plane;
 using AirportStorage.DataAccess.Repositories;
@@ -8,11 +8,7 @@ using AirportStorage.Domain.Entities.Owner;
 using AirportStorage.Domain.Entities.Planes;
 using AirportStorage.Domain.Entities.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirportStorage.DataAcces.Test
 {

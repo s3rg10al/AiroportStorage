@@ -12,7 +12,7 @@ namespace AirportStorage.DataAccess.Abstract.Staffs
     /// <summary>
     /// Define las operaciones a ralizar sobre una base de datos de Staff
     /// </summary>
-    internal interface IStaffRepository : IRepository
+    public interface IStaffRepository : IRepository
     {
         /// <summary>
         /// Crea una Persona en BD

@@ -1,4 +1,7 @@
-﻿using AirportStorage.Domain.Entities.Hangar;
+﻿using AirportStorage.DataAcces.Tests.Utilities;
+using AirportStorage.DataAccess.Abstract.Staffs;
+using AirportStorage.DataAccess.Repositories;
+using AirportStorage.Domain.Entities.Hangar;
 using AirportStorage.Domain.Entities.Staff;
 using AirportStorage.Domain.Entities.Workshop;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,13 +12,16 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
+
+namespace AirportStorage.DataAcces.Test
+{
     [TestClass]
     public class StaffTest
     {
         private IStaffRepository _StaffRepository;
         public StaffTest()
         {
-            _StaffRepository = new ApplicationRepository(ConnectionsStringProvider.GetConnectionString())
+            _StaffRepository = new ApliccationRepository(ConnectionStringProvider.GetConnectionString());
         }
         [DataRow(1000, "Pedro Garcia", 78020568755, "Operario", workshop)]
         [TestMethod]
@@ -160,4 +166,5 @@ using System.Threading.Tasks;
         }
 
 
-    } 
+    }
+}

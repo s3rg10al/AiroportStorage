@@ -29,7 +29,7 @@ namespace AirportStorage.Domain.Entities.Owner
         public uint CantJets {  get; set; }
 
       
-       public int Id { get; } 
+       public uint CI { get; } 
 
        public string Adress { get; set; }
 
@@ -47,7 +47,7 @@ namespace AirportStorage.Domain.Entities.Owner
         public Owner(string nomb, uint id, uint cantjets)
         {
             Name = nomb;
-            Id = id;
+            CI = id;
             CantJets = cantjets;
             Jets = new List<Jets>();
           

@@ -19,7 +19,7 @@ public class WorkshopTest
     private IWorkshopRepository _WorkshopRepository;
     public WorkshopTest()
     {
-        _WorkshopRepository = new ApplicationRepository(ConnectionsStringProvider.GetConnectionString())
+        _WorkshopRepository = new ApliccationRepository(ConnectionStringProvider.GetConnectionString())
         }
     [DataRow(10, store, company)]
     [TestMethod]
