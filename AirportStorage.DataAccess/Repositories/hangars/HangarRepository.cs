@@ -1,4 +1,6 @@
-﻿using AirportStorage.Domain.Entities.Hangar;
+﻿using AirportStorage.DataAccess.Abstract.hangars;
+using AirportStorage.Domain.Entities.company;
+using AirportStorage.Domain.Entities.Hangar;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,27 +14,27 @@ namespace AirportStorage.DataAccess.Repositories
 {
     public partial class ApliccationRepository : IHangarRepository
     {
-        Hangar Create(int InitialCantMax)
+        public Hangar Create(int InitialCantMax,Company company)
         {
-            Hangar hangars = new Hangar(InitialCantMax);
+            Hangar hangars = new Hangar(InitialCantMax,company);
             _context.Add(hangars);
             return hangars;
         }
 
 
-        Hangar? Get(int id)
+       Hangar? IHangarRepository.Get(int id)
         {
             return _context.Set<Hangar>().Find(id);
         }
 
 
-        void Update(Hangar hangars)
+        public void Update(Hangar hangars)
         {
             _context.Update(hangars);
         }
 
 
-        void Delete(Hangar hangars)
+       public void Delete(Hangar hangars)
         {
             _context.Remove(hangars);
         }

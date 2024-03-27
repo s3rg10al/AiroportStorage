@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AirportStorage.Domain.Entities.company;
 
-namespace AirportStorage.DataAccess.Abstract.Company
+namespace AirportStorage.DataAccess.Abstract.Companys
 {
     public interface ICompanyRepository : IRepository
     {
@@ -14,8 +14,8 @@ namespace AirportStorage.DataAccess.Abstract.Company
         /// <summary>
         /// constructor de la clase company que establece el pais donde se encuentraw
         /// </summary>
-        /// <param name="InitialPais">pais al que pertenece la compañia</param>
-        Company Create(string InitialPais);
+        /// <param name="InitialCountry">pais al que pertenece la compañia</param>
+        Company Create(string InitialCountry);
 
         /// <summary>
         /// Obtiene una compagnia
