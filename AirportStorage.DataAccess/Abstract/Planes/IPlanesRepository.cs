@@ -25,6 +25,7 @@ namespace AirportStorage.DataAccess.Abstract.Plane
         /// <param name="hangarId">identificador del hangar al que pertenece</param>
         /// <returns></returns>
         Commercial CreateCommercial(string modelo, string serialnumber, uint cantkmsPM, uint passengerscapacity, Hangar hangar);
+        object CreateCommercial(string modelo, string serialnumber, uint cantkmsPM, uint passengerscapacity, Domain.Entities.Hangar.Hangar hangar);
 
         /// <summary>
         /// Crea un avion en BD

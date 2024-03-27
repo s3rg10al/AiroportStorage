@@ -18,7 +18,7 @@ namespace AirportStorage.Domain.Entities.Planes
         /// <summary>
         /// Capacidad de pasajeros maximos que permite el avion. Dato del fabricante
         /// </summary>
-        public uint PassengersCapacity { get;}
+        public uint PassengersCapacity { get; set; }
 
         [NotMapped]
         /// <summary>
