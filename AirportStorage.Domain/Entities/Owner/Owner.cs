@@ -29,7 +29,7 @@ namespace AirportStorage.Domain.Entities.Owner
         public uint CantJets {  get; set; }
 
       
-       public uint Id { get; } 
+       public int Id { get; } 
 
        public string Adress { get; set; }
 

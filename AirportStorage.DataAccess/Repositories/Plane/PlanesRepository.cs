@@ -1,4 +1,6 @@
 ﻿using AirportStorage.DataAccess.Abstract.Plane;
+using AirportStorage.Domain.Entities.Hangar;
+using AirportStorage.Domain.Entities.Owner;
 using AirportStorage.Domain.Entities.Planes;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,16 +15,16 @@ namespace AirportStorage.DataAccess.Repositories
 {
     public partial class ApliccationRepository : IPlanesRepository
     {
-        public Commercial CreateCommercial(string modelo, string serialnumber, uint cantkmsPM, uint passengerscapacity, int hangarId)
+        public Commercial CreateCommercial(string modelo, string serialnumber, uint cantkmsPM, uint passengerscapacity, Hangar hangar)
         {
-            Commercial commercial = new Commercial(modelo, serialnumber, cantkmsPM, passengerscapacity, hangarId);
+            Commercial commercial = new Commercial(modelo, serialnumber, cantkmsPM, passengerscapacity, hangar);
             _context.Add(commercial);
             return commercial;
         }
 
-        public Jets CreateJets(string modelo, string serialnumber, uint cantkmsPM, int ownerId)
+        public Jets CreateJets(string modelo, string serialnumber, uint cantkmsPM, Owner owner)
         {
-            Jets jets = new Jets(modelo,serialnumber,cantkmsPM,ownerId);
+            Jets jets = new Jets(modelo,serialnumber,cantkmsPM,owner);
             _context.Add(jets);
             return jets;
         }

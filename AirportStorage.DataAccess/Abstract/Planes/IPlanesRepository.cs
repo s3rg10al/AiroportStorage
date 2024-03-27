@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AirportStorage.Domain.Entities.Hangar;
+using AirportStorage.Domain.Entities.Owner;
 using AirportStorage.Domain.Entities.Planes;
 
 namespace AirportStorage.DataAccess.Abstract.Plane
@@ -22,7 +24,7 @@ namespace AirportStorage.DataAccess.Abstract.Plane
         /// <param name="passengerscapacity">Capacidad de pasajeros del avion comercial</param>
         /// <param name="hangarId">identificador del hangar al que pertenece</param>
         /// <returns></returns>
-        Commercial CreateCommercial(string modelo, string serialnumber, uint cantkmsPM, uint passengerscapacity, int hangarId);
+        Commercial CreateCommercial(string modelo, string serialnumber, uint cantkmsPM, uint passengerscapacity, Hangar hangar);
 
         /// <summary>
         /// Crea un avion en BD
@@ -32,7 +34,7 @@ namespace AirportStorage.DataAccess.Abstract.Plane
         /// <param name="cantkmsPM">cantidad de kilometros en plan de mantenimiento</param>
         /// /// <param name="ownerId">id del propietario</param> //TODO: Revisar que la profe dijo que sno se pasara elñ id sino la clase completa a la que se va a hacer relacion
         /// <returns></returns>
-        Jets CreateJets(string modelo, string serialnumber, uint cantkmsPM, int ownerId);
+        Jets CreateJets(string modelo, string serialnumber, uint cantkmsPM, Owner owner);
 
         /// <summary>
         /// Obtiene un avion
