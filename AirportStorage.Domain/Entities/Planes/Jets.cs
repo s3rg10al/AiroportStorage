@@ -37,11 +37,11 @@ namespace AirportStorage.Domain.Entities.Planes
         /// <param name="cantkmsPM">cantidad de kilometros a los cuales al avion se le debe realizar mantenimineto kilometraje</param>
         /// <param name="propietario">propietario</param>
 
-        public Jets(string modelo, string serialnumber, uint cantkmsPM, int ownerId) : base(modelo, serialnumber, cantkmsPM)
+        public Jets(string modelo, string serialnumber, uint cantkmsPM, Owner.Owner owner) : base(modelo, serialnumber, cantkmsPM)
         {
             
             LuxuryLevel = LuxuryLevel.Estandar;
-            OwnerId = ownerId;
+            OwnerId = owner.Id;
         }
         /// <summary>
         /// Constructor requerido por Entity Framework

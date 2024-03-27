@@ -39,10 +39,10 @@ namespace AirportStorage.Domain.Entities.Planes
         /// <param name="serialnumber">Numero de serie del avion</param>
         /// <param name="cantkmsPM">cantidad de kilometros a los cuales al avion se le debe realizar mantenimineto kilometraje</param>
         /// <param name="capacidadPasajeros">capacidad de pasajeros</param>
-        public Commercial(string modelo, string serialnumber, uint cantkmsPM, uint passengerscapacity , int hangarId) : base(modelo, serialnumber, cantkmsPM)
+        public Commercial(string modelo, string serialnumber, uint cantkmsPM, uint passengerscapacity , Hangar.Hangar hangar) : base(modelo, serialnumber, cantkmsPM)
         {
             PassengersCapacity = passengerscapacity;
-            HangarId = hangarId;
+            HangarId = hangar.Id;
         
         }
 

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportStorage.Domain", "Ai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportStorage.DataAccess", "AirportStorage.DataAccess\AirportStorage.DataAccess.csproj", "{64D330F0-2FD2-4AEA-AE52-18E0E942392F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportStorage.DataAcces.Test", "AirportStorage.DataAcces.Test\AirportStorage.DataAcces.Test.csproj", "{A6982772-9309-4E6B-B0E0-A01265C1863C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{64D330F0-2FD2-4AEA-AE52-18E0E942392F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64D330F0-2FD2-4AEA-AE52-18E0E942392F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64D330F0-2FD2-4AEA-AE52-18E0E942392F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6982772-9309-4E6B-B0E0-A01265C1863C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6982772-9309-4E6B-B0E0-A01265C1863C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6982772-9309-4E6B-B0E0-A01265C1863C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6982772-9309-4E6B-B0E0-A01265C1863C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

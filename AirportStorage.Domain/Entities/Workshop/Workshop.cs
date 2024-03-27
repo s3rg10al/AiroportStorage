@@ -61,13 +61,13 @@ namespace AirportStorage.Domain.Entities.Workshop
         ///Inicializa un objeto <see cref="Workshop"/>
         /// </summary>
         /// <param name="ability">Capacidad del Taller</param>
-        public Workshop(uint ability, int storeId, int companyId)
+        public Workshop(uint ability, Store.Store store, company.Company company )
         {
             Ability=ability;
             IsAbility= true;
             Mech = new List<Mechanic>();
-            StoreId=storeId;
-            CompanyId=companyId;
+            StoreId=store.Id;
+            CompanyId=company.Id;
             
             
         }

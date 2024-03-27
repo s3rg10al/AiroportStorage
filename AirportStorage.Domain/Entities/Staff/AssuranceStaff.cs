@@ -53,13 +53,13 @@ namespace AirportStorage.Domain.Entities.Staff
         /// <param name="id">Numero de identificacion</param>
         /// <param name="cargo">Cargo que ocupa</param>
 
-        public AssuranceStaff(uint pagoXhoras,uint pagoXhorasextras, string nomb, uint id, string cargo, int hangarId) : base(nomb, id, cargo)
+        public AssuranceStaff(uint pagoXhoras,uint pagoXhorasextras, string nomb, uint id, string cargo, Hangar.Hangar hangar) : base(nomb, id, cargo)
         {
             PagoxHoras = pagoXhoras;
             PagoxHorasExtras = pagoXhorasextras;
             CantHorasTrabajadas = 0;
             CantHorasExtras = 0;
-            HangarId = hangarId;
+            HangarId = hangar.Id;
         }
 
         /// <summary>
