@@ -41,7 +41,7 @@ namespace AirportStorage.Domain.Entities.Planes
         {
             
             LuxuryLevel = LuxuryLevel.Estandar;
-            OwnerId = owner.CI;
+            OwnerId = owner.Id;
         }
         /// <summary>
         /// Constructor requerido por Entity Framework

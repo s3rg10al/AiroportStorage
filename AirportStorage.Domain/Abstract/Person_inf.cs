@@ -20,7 +20,7 @@ namespace AirportStorage.Domain.Abstract
         ///<summary>
         /// Numero de identidad de la persona
         ///</summary>
-        public uint Id { get; }
+        public uint CI { get; }
 
         ///<summary>
         /// Direccion de la persona

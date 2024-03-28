@@ -30,15 +30,15 @@ namespace AirportStorage.DataAcces.Test
         [DataRow(1000, "German Garmendia", 87041298744, "Operario", 1)]
         
 
-        public void Can_Create_Mechanic(uint pagoXrep, string nomb, uint id, string cargo,int workshopId)
+        public void Can_Create_Mechanic(uint pagoXrep, string nomb, uint ci, string cargo,int workshopId)
         {
             //Arrange 
             _StaffReposityory.BeginTransaction();
-            Workshop workshop = ((IWorkshopRepository)_StaffReposityory).Get(workshopId);
+            Workshop workshop = ((IWorkshopRepository)_StaffReposityory).GetWorkshop(workshopId);
             Assert.IsNotNull(workshop);
 
             //Execute
-            Mechanic mechanic = (Mechanic)_StaffReposityory.CreateMechanic(pagoXrep, nomb, id, cargo, workshop);
+            Mechanic mechanic = (Mechanic)_StaffReposityory.CreateMechanic(pagoXrep, nomb, ci, cargo, workshop);
             _StaffReposityory.PartialCommit();
             var loadedMechanic = _StaffReposityory.GetStaff<Mechanic>(mechanic.Id);
             _StaffReposityory.CommitTransaction();
@@ -47,7 +47,7 @@ namespace AirportStorage.DataAcces.Test
             Assert.IsNotNull(loadedMechanic);
             Assert.AreEqual(loadedMechanic.PagoxRep, mechanic.PagoxRep);
             Assert.AreEqual(loadedMechanic.Name, mechanic.Name);
-            Assert.AreEqual(loadedMechanic.Id, mechanic.Id);
+            Assert.AreEqual(loadedMechanic.CI, mechanic.CI);
             Assert.AreEqual(loadedMechanic.Cargo, mechanic.Cargo);
             Assert.AreEqual(loadedMechanic.WorkshopId, mechanic.WorkshopId);
 
@@ -55,15 +55,15 @@ namespace AirportStorage.DataAcces.Test
 
         [TestMethod]
         [DataRow(200, 400, "Federico Garcia",99082287455,"Pistero", 1)]
-        public void Can_Create_AssuranceStaff(uint pagoXhoras, uint pagoXhorasextras, string nomb, uint id, string cargo, int hangarId)
+        public void Can_Create_AssuranceStaff(uint pagoXhoras, uint pagoXhorasextras, string nomb, uint ci, string cargo, int hangarId)
         {
             //Arrange 
             _StaffReposityory.BeginTransaction();
-            Hangar hangar = ((IHangarRepository)_StaffReposityory).Get(hangarId);
+            Hangar hangar = ((IHangarRepository)_StaffReposityory).GetHangar(hangarId);
             Assert.IsNotNull(hangar);
 
             //Execute
-            AssuranceStaff assuranceStaff = (AssuranceStaff)_StaffReposityory.CreateAssuranceStaff(pagoXhoras,pagoXhorasextras,nomb,id,cargo,hangar);
+            AssuranceStaff assuranceStaff = (AssuranceStaff)_StaffReposityory.CreateAssuranceStaff(pagoXhoras,pagoXhorasextras,nomb,ci,cargo,hangar);
             _StaffReposityory.PartialCommit();
             var loadedAssuranceStaff = _StaffReposityory.GetStaff<AssuranceStaff>(assuranceStaff.Id);
             _StaffReposityory.CommitTransaction();
@@ -73,7 +73,7 @@ namespace AirportStorage.DataAcces.Test
             Assert.AreEqual(loadedAssuranceStaff.PagoxHoras, assuranceStaff.PagoxHoras);
             Assert.AreEqual(loadedAssuranceStaff.PagoxHorasExtras, assuranceStaff.PagoxHorasExtras);
             Assert.AreEqual(loadedAssuranceStaff.Name, assuranceStaff.Name);
-            Assert.AreEqual(loadedAssuranceStaff.Id, assuranceStaff.Id);
+            Assert.AreEqual(loadedAssuranceStaff.CI, assuranceStaff.CI);
             Assert.AreEqual(loadedAssuranceStaff.Cargo, assuranceStaff.Cargo);
             Assert.AreEqual(loadedAssuranceStaff.HangarId, hangarId);
 
@@ -98,8 +98,8 @@ namespace AirportStorage.DataAcces.Test
         }
 
         [TestMethod]
-        [DataRow(1,"Jhon Cena", 79112476545,"Trabajador" )]
-        public void Can_Update_Staff(int pos,string nomb, uint id, string cargo)
+        [DataRow(1,"Jhon Cena","Trabajador" )]
+        public void Can_Update_Staff(int pos,string nomb, string cargo)
         {
             //Arrange
             _StaffReposityory.BeginTransaction();
@@ -111,7 +111,6 @@ namespace AirportStorage.DataAcces.Test
 
             //Execute
             staff.Name = nomb;
-            staff.Id = id;
             staff.Cargo = cargo;
             _StaffReposityory.Update(staff);
             _StaffReposityory.PartialCommit();
@@ -120,7 +119,7 @@ namespace AirportStorage.DataAcces.Test
             var updatedStaff = _StaffReposityory.GetStaff<Staff>(staff.Id);
             Assert.IsNotNull(updatedStaff);
             Assert.AreEqual(updatedStaff.Name, staff.Name);
-            Assert.AreEqual(updatedStaff.Id, staff.Id);
+            Assert.AreEqual(updatedStaff.CI, staff.CI);
             Assert.AreEqual(updatedStaff.Cargo, staff.Cargo);
         }
 
@@ -178,19 +177,19 @@ namespace AirportStorage.DataAcces.Test
         {
             //Arrange
             _StaffReposityory.BeginTransaction();
-            var staff = _StaffReposityory.GetAllStaff();
-            Assert.IsNotNull(staff);
-            var count = staff.Count();
-            var staffs = staff.ElementAt(pos);
+            var staffs = _StaffReposityory.GetAllStaff();
+            Assert.IsNotNull(staffs);
+            var count = staffs.Count();
+            var staff = staffs.ElementAt(pos);
             Assert.IsNotNull(staffs);
 
             //Execute
-            _StaffReposityory.Delete(staffs);
+            _StaffReposityory.Delete(staff);
             _StaffReposityory.PartialCommit();
 
             //Assert
-            staff = _StaffReposityory.GetAllStaff();
-            Assert.AreEqual(count - 1, staff.Count());
+            staffs = _StaffReposityory.GetAllStaff();
+            Assert.AreEqual(count - 1, staffs.Count());
             var deletedStaff = _StaffReposityory.GetStaff<Staff>(staff.Id);
             _StaffReposityory.CommitTransaction();
             Assert.IsNull(deletedStaff);

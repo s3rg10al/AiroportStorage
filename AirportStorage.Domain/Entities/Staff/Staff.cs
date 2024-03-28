@@ -29,7 +29,7 @@ namespace AirportStorage.Domain.Entities.Staff
 
         public string Name { get; set; }
 
-        public uint Id { get; }
+        public uint CI { get; }
 
         public string Adress { get; set; }
 
@@ -46,7 +46,7 @@ namespace AirportStorage.Domain.Entities.Staff
         public Staff(string nomb, uint id, string cargo)
         {
             Name = nomb;
-            Id = id;
+            CI = id;
             Cargo = cargo;
             Exp = Experience.Noob;
             Years = 0;
