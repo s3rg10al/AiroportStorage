@@ -60,5 +60,8 @@ namespace AirportStorage.DataAccess.Abstract.Staffs
         /// </summary>
         /// <param name="staff">avion que se va a eliminar</param>
         void Delete(Staff staff);
+        object Get(int id);
+        Mechanic Create(uint pagoXrep, string nomb, uint id, string cargo, Workshop workshop);
+        AssuranceStaff Create(uint pagoXhoras, uint pagoXhorasextras, string nomb, uint id, string cargo, Hangar hangar);
     }
 }
