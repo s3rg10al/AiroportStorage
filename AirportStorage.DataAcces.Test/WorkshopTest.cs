@@ -26,6 +26,7 @@ namespace AirportStorage.DataAcces.Tests
         }
         [DataRow(10, 1, 1)]
         [TestMethod]
+        [Priority(2)]
         public void Can_Create_Workshop(uint ability, int storeId, int companyId)
         {
             //Arrage
@@ -49,6 +50,7 @@ namespace AirportStorage.DataAcces.Tests
         }
         [DataRow(1)]
         [TestMethod]
+        [Priority(3)]
         public void Can_Get_Workshop(int id)
         {
             //Arrage
@@ -63,6 +65,7 @@ namespace AirportStorage.DataAcces.Tests
         }
         [DataRow(10, 15, true)]
         [TestMethod]
+        [Priority(3)]
         public void Can_Update_Workshop(int id, uint ability, bool HayCap)
         {
             //Arrange
@@ -86,6 +89,7 @@ namespace AirportStorage.DataAcces.Tests
         }
         [DataRow(1)]
         [TestMethod]
+        [Priority(6)]
         public void Can_Delete_Workshop(int id)
         {
             //Arrange

@@ -17,8 +17,10 @@ namespace AirportStorage.DataAcces.Tests
             _ownerRepository = new ApliccationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow("victor hugo",022123,3)]
-        [DataRow("frank Sinatra", 029482, 4)]
+        [DataRow("victor hugo",2212,3)]
+        [DataRow("frank Sinatra", 2948, 4)]
+        [TestMethod]
+        [Priority(1)]
         public void Can_Create_Owner(string nomb, uint id, uint cantjets)
         {
             //Arrange
@@ -42,6 +44,7 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(1)]
         [DataRow(2)]
         [TestMethod]
+        [Priority(2)]
         public void Can_Get_Owner(int pos)
         {
             //Arrange 
@@ -55,10 +58,11 @@ namespace AirportStorage.DataAcces.Tests
             Assert.IsNotNull(loadedCompany);
         }
 
-        [DataRow(1, "arthur conan doyle",62233,5)]
-        [DataRow(2, "Brandon sanderson", 62233, 7)]
+        [DataRow(1, "arthur conan doyle",6223,5)]
+        [DataRow(2, "Brandon sanderson", 6233, 7)]
         [TestMethod]
-        public void Can_Update_Company(int pos, string nomb, uint id, uint cantjets)
+        [Priority(2)]
+        public void Can_Update_Owner(int pos, string nomb, uint id, uint cantjets)
         {
             //Arrange
             _ownerRepository.BeginTransaction();
@@ -81,7 +85,8 @@ namespace AirportStorage.DataAcces.Tests
 
         [DataRow(1)]
         [TestMethod]
-        public void Can_Delete_Company(int id)
+        [Priority(6)]
+        public void Can_Delete_Owner(int id)
         {
             //Arrange
             _ownerRepository.BeginTransaction();

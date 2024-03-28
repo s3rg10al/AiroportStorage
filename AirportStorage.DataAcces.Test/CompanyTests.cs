@@ -27,6 +27,7 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow("cuba")]
         [DataRow("USA")]
         [TestMethod]
+        [Priority(1)]
         public void Can_Create_Company(string InitialCountry)
         {
             //Arrange
@@ -49,6 +50,7 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(1)]
         [DataRow(2)]
         [TestMethod]
+        [Priority(2)]
         public void Can_Get_Company(int id)
         {
             //Arrange 
@@ -65,6 +67,7 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(1,"panama")]
         [DataRow(2, "inglaterra")]
         [TestMethod]
+        [Priority(2)]
         public void Can_Update_Company(int id,string InitialCountry)
         {
             //Arrange
@@ -87,6 +90,7 @@ namespace AirportStorage.DataAcces.Tests
 
         [DataRow(1)]
         [TestMethod]
+        [Priority(6)]
         public void Can_Delete_Company(int id)
         {
             //Arrange

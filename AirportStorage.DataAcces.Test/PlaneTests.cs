@@ -27,6 +27,7 @@ namespace AirportStorage.DataAcces.Test
         [TestMethod]
         [DataRow("Boing747", "SMls0707", 50000, 500, 2)]
         [DataRow("Boing747, GClm2547", 100000, 250, 1)]
+        [Priority(3)]
 
         public void Can_Create_Commercial(string modelo, string serialnumber, uint cantkmsPM, uint passengerscapacity, int hangarId)
         {
@@ -54,6 +55,7 @@ namespace AirportStorage.DataAcces.Test
         [TestMethod]
         [DataRow("SyberjectSJ30", "SA55245", 100000, 2)]
         [DataRow("GulsfstreamG550", "GP56987", 100000, 1)]
+        [Priority(3)]
         public void Can_Create_Jets(string modelo, string serialnumber, uint cantkmsPM, int ownerId)
         {
             //Arrange 
@@ -80,6 +82,7 @@ namespace AirportStorage.DataAcces.Test
         }
         [TestMethod]
         [DataRow(1)]
+        [Priority(4)]
         public void Can_Get_Planes(int count)
         {
             //Arrange
@@ -98,6 +101,7 @@ namespace AirportStorage.DataAcces.Test
         [TestMethod]
         [DataRow(1, 9000, 15000, FlightStatus.Volando)]
         [DataRow(2, 10000, 50000, FlightStatus.Mantenimiento)]
+        [Priority(4)]
         public void Can_Update_Planes(int pos, uint cantKMmant,uint cantKMTot, FlightStatus flightStatus )
         {
             //Arrange
@@ -126,6 +130,7 @@ namespace AirportStorage.DataAcces.Test
         [TestMethod]
         [DataRow(1, 200)]
         [DataRow(2,350)]
+        [Priority(4)]
 
         public void Can_Update_Commercial(int pos, uint passengerCapacity)
         {
@@ -150,6 +155,7 @@ namespace AirportStorage.DataAcces.Test
         [TestMethod]
         [DataRow(1, LuxuryLevel.Alto)]
         [DataRow(2, LuxuryLevel.Medio)]
+        [Priority(4)]
         public void Can_Update_Jets(int pos, LuxuryLevel luxuryLevel)
         {
             //Arrange
@@ -174,6 +180,7 @@ namespace AirportStorage.DataAcces.Test
         [TestMethod]
         [DataRow(1)]
         [DataRow(2)]
+        [Priority(6)]
         public void Can_Delete_Planes(int pos)
         {
             //Arrange

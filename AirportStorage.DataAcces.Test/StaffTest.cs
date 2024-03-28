@@ -27,8 +27,9 @@ namespace AirportStorage.DataAcces.Test
 
 
         [TestMethod]
-        [DataRow(1000, "German Garmendia", 87041298744, "Operario", 1)]
-        
+        [DataRow(1000, "German Garmendia", 87041, "Operario", 1)]
+        [Priority(3)]
+
 
         public void Can_Create_Mechanic(uint pagoXrep, string nomb, uint ci, string cargo,int workshopId)
         {
@@ -54,7 +55,8 @@ namespace AirportStorage.DataAcces.Test
         }
 
         [TestMethod]
-        [DataRow(200, 400, "Federico Garcia",99082287455,"Pistero", 1)]
+        [DataRow(200, 400, "Federico Garcia",99082,"Pistero", 1)]
+        [Priority(3)]
         public void Can_Create_AssuranceStaff(uint pagoXhoras, uint pagoXhorasextras, string nomb, uint ci, string cargo, int hangarId)
         {
             //Arrange 
@@ -82,6 +84,7 @@ namespace AirportStorage.DataAcces.Test
         }
         [TestMethod]
         [DataRow(1)]
+        [Priority(4)]
         public void Can_Get_Staff(int count)
         {
             //Arrange
@@ -99,6 +102,7 @@ namespace AirportStorage.DataAcces.Test
 
         [TestMethod]
         [DataRow(1,"Jhon Cena","Trabajador" )]
+        [Priority(4)]
         public void Can_Update_Staff(int pos,string nomb, string cargo)
         {
             //Arrange
@@ -125,6 +129,7 @@ namespace AirportStorage.DataAcces.Test
 
         [TestMethod]
         [DataRow(1,2000,"Franz Kafka")]
+        [Priority(4)]
 
         public void Can_Update_Mechanic(int pos,uint pagoXrep,string nomb )
         {
@@ -150,6 +155,7 @@ namespace AirportStorage.DataAcces.Test
 
         [TestMethod]
         [DataRow(1, "Limpeza")]
+        [Priority(4)]
         public void Can_Update_AssuranceStaff(int pos, string cargo)
         {
             //Arrange
@@ -173,6 +179,7 @@ namespace AirportStorage.DataAcces.Test
 
         [TestMethod]
         [DataRow(1)]
+        [Priority(6)]
         public void Can_Delete_Staff(int pos)
         {
             //Arrange

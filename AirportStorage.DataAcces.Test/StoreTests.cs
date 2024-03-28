@@ -24,6 +24,7 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(200,9.54, 2)]//como se pasa un date time?
         [DataRow(300, 9.14, 1)]
         [TestMethod]
+        [Priority(3)]
         public void Can_Create_Store(uint cantPiezas, DateTime lastInv, int workshopsId)
         {
             //Arrange
@@ -49,6 +50,7 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(1)]
         [DataRow(2)]
         [TestMethod]
+        [Priority(4)]
         public void Can_Get_Store(int id)
         {
             //Arrange 
@@ -65,6 +67,7 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(1,400, 2.54)]
         [DataRow(2,500,9.24)]
         [TestMethod]
+        [Priority(4)]
         public void Can_Update_Store(int id, uint cantPiezas, DateTime lastInv)
         {
             //Arrange
@@ -92,6 +95,7 @@ namespace AirportStorage.DataAcces.Tests
 
         [DataRow(1)]
         [TestMethod]
+        [Priority(6)]
         public void Can_Delete_Store(int id)
         {
             //Arrange

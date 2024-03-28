@@ -28,6 +28,7 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(200,2)]
         [DataRow(300,2)]
         [TestMethod]
+        [Priority(2)]
         public void Can_Create_Hangar(int InitialCantMax, int CompanyId )
         {
             //Arrange
@@ -53,6 +54,7 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(1)]
         [DataRow(2)]
         [TestMethod]
+        [Priority(3)]
         public void Can_Get_Hangar(int id)
         {
             //Arrange 
@@ -69,6 +71,7 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(1, 200)]
         [DataRow(2, 300)]
         [TestMethod]
+        [Priority(3)]
         public void Can_Update_Hangar(int id, int InitialCantMax)
         {
             //Arrange
@@ -93,6 +96,7 @@ namespace AirportStorage.DataAcces.Tests
 
         [DataRow(1)]
         [TestMethod]
+        [Priority(6)]
         public void Can_Delete_Hangar(int id)
         {
             //Arrange
