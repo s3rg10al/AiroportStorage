@@ -19,7 +19,7 @@ public class WorkshopTest
     private IWorkshopRepository _WorkshopRepository;
     public WorkshopTest()
     {
-        _WorkshopRepository = new ApliccationRepository(ConnectionStringProvider.GetConnectionString())
+        _WorkshopRepository = new ApliccationRepository(ConnectionStringProvider.GetConnectionString());
         }
     [DataRow(10, store, company)]
     [TestMethod]
@@ -29,7 +29,7 @@ public class WorkshopTest
         _WorkshopRepository.BeginTransaction();
 
         //Execute
-        Workshop newWorkshop = _WorkshopRepository.Create(ability, store, company);
+        Workshop newWorkshop = _WorkshopRepository.CreateWorkshop(ability, store, company);
         _WorkshopRepository.PartialCommit();//Generando id del nuevo elemento.
         Workshop? loadedWorkshop = _WorkshopRepository.Get(newWorkshop.Id);
         _WorkshopRepository.CommitTransaction();

@@ -32,7 +32,7 @@ namespace AirportStorage.DataAcces.Test
         {
             //Arrange 
             _planesReposityory.BeginTransaction();
-            Hangar hangar = ((IHangarRepository)_planesReposityory).Get(hangarId);
+            Hangar hangar = ((IHangarRepository)_planesReposityory).GetHangar(hangarId);
             Assert.IsNotNull(hangar);
 
             //Execute

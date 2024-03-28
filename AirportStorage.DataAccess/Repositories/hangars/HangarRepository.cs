@@ -22,9 +22,14 @@ namespace AirportStorage.DataAccess.Repositories
         }
 
 
-       Hangar? IHangarRepository.Get(int id)
+       Hangar? IHangarRepository.GetHangar(int id)
         {
             return _context.Set<Hangar>().Find(id);
+        }
+
+        public IEnumerable<Hangar> GetAllHangars()
+        {
+            return _context.Set<Hangar>().ToList();
         }
 
 

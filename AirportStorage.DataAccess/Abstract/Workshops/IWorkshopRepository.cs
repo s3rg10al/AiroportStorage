@@ -13,7 +13,7 @@ namespace AirportStorage.DataAccess.Abstract.Workshops
     /// <summary>
     /// Define las operaciones a ralizar sobre una base de datos de Workshop
     /// </summary>
-    public interface IWorkshopRepository
+    public interface IWorkshopRepository : IRepository
     {
         /// <summary>
         /// Crea un Taller en BD

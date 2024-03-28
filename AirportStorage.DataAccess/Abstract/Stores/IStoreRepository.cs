@@ -13,7 +13,7 @@ namespace AirportStorage.DataAccess.Abstract.Stores
     /// <summary>
     /// Define las operaciones a ralizar sobre una base de datos de Store
     /// </summary>
-    public interface IStoreRepository
+    public interface IStoreRepository : IRepository
     {
         /// <summary>
         /// Crea un Almacen en BD

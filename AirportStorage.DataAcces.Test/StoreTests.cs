@@ -1,13 +1,9 @@
 ﻿using AirportStorage.DataAcces.Tests.Utilities;
-using AirportStorage.DataAccess.Abstract.Store;
+using AirportStorage.DataAccess.Abstract.Stores;
 using AirportStorage.DataAccess.Repositories;
 using AirportStorage.Domain.Entities.Store;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirportStorage.DataAcces.Tests
 {
@@ -27,13 +23,13 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(200,9.54)]//como se pasa un date time?
         [DataRow(300, 9.14)]
         [TestMethod]
-        public void Can_Create_Store(uint cantPiezas, DateTime lastInv,workshop)//falta ver si recibe workshop
+        public void Can_Create_Store(uint cantPiezas, DateTime lastInv)//falta ver si recibe workshop
         {
             //Arrange
             _storeRepository.BeginTransaction();
 
             //Execute
-            Store newStore = _storeRepository.Create(cantPiezas,lastInv);
+            Store newStore = _storeRepository.CreateStore(cantPiezas,lastInv);
             _storeRepository.PartialCommit();  //generando id 
             Store? loadedStore = _storeRepository.Get(newStore.Id);
             _storeRepository.CommitTransaction();
@@ -74,7 +70,7 @@ namespace AirportStorage.DataAcces.Tests
             //Execute
             var loadedStore = _storeRepository.Get(id);
             Assert.IsNotNull(loadedStore);
-            var newStore = new Store(cantPiezas,lastInv,workshopId) { Id = loadedStore.Id };
+            var newStore = new Store(cantPiezas,lastInv,workshop) { Id = loadedStore.Id };
             _storeRepository.Update(newStore);
             var modifyedStore = _storeRepository.Get(id);
             _storeRepository.CommitTransaction();

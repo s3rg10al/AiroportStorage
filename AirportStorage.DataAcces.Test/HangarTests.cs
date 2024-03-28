@@ -39,7 +39,7 @@ namespace AirportStorage.DataAcces.Tests
             //Execute
             Hangar newHangar = _hangarRepository.Create(InitialCantMax, company);
             _hangarRepository.PartialCommit();  //generando id 
-            Hangar? loadedHangar = _hangarRepository.Get(newHangar.Id);
+            Hangar? loadedHangar = _hangarRepository.GetHangar(newHangar.Id);
             _hangarRepository.CommitTransaction();
 
             //Assert
@@ -60,7 +60,7 @@ namespace AirportStorage.DataAcces.Tests
             _hangarRepository.BeginTransaction();
 
             // Execute
-            var loadedHangar = _hangarRepository.Get(id);
+            var loadedHangar = _hangarRepository.GetHangar(id);
             _hangarRepository.CommitTransaction();
 
             //Assert
@@ -74,19 +74,21 @@ namespace AirportStorage.DataAcces.Tests
         {
             //Arrange
             _hangarRepository.BeginTransaction();
+            var hangars = _hangarRepository.GetAllHangars();
+            Assert.IsNotNull(hangars);
+            var hangar = hangars.ElementAt(id);
+            Assert.IsNotNull(hangar);
 
             //Execute
-            var loadedHangar = _hangarRepository.Get(id);
-            Assert.IsNotNull(loadedHangar);
-            var newHangar = new Hangar(InitialCantMax, Company) { Id = loadedHangar.Id };
-            _hangarRepository.Update(newHangar);
-            var modifyedHangar = _hangarRepository.Get(id);
-            _hangarRepository.CommitTransaction();
+            hangar.capMax = InitialCantMax;
+            _hangarRepository.Update(hangar);
+            _hangarRepository.PartialCommit();
 
             //Assert
-            Assert.AreEqual(modifyedHangar.capMax, InitialCantMax);
-
-
+            var updatedPlane = _hangarRepository.GetHangar(hangar.Id);
+            Assert.IsNotNull(updatedPlane);
+            Assert.AreEqual(updatedPlane.capMax, hangar.capMax);
+          
 
         }
 
@@ -98,17 +100,17 @@ namespace AirportStorage.DataAcces.Tests
             _hangarRepository.BeginTransaction();
 
             //Execute
-            var loadedHangar = _hangarRepository.Get(id);
+            var loadedHangar = _hangarRepository.GetHangar(id);
             Assert.IsNotNull(loadedHangar);
             _hangarRepository.Delete(loadedHangar);
             _hangarRepository.PartialCommit();
-            loadedHangar = _hangarRepository.Get(id);
+            loadedHangar = _hangarRepository.GetHangar(id);
             _hangarRepository.CommitTransaction();
 
             //Assert
             Assert.IsNull(loadedHangar);
 
-
+           
 
         }
     }

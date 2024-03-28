@@ -23,7 +23,16 @@ namespace AirportStorage.DataAccess.Abstract.hangars
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Hangar? Get(int id);
+        Hangar? GetHangar(int id);
+       
+        
+        
+        /// <summary>
+        /// Obtien todos los Workshop en base de datos
+        /// </summary>
+        /// <returns> Workshop en Base de Datos</returns>
+        IEnumerable<Hangar> GetAllHangars();
+
 
         /// <summary>
         /// Actualiza los parametros de un hangar en BD
