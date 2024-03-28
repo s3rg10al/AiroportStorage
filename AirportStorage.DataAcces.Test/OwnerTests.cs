@@ -6,9 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AirportStorage.DataAcces.Tests
 {
-    /// <summary>
-    /// Para ver si logro el merge
-    /// </summary>
+    [TestClass]
     public class OwnerTests
     {
         private IOwnerRepository _ownerRepository;

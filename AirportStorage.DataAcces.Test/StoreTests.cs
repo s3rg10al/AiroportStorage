@@ -10,9 +10,7 @@ using System.Linq;
 
 namespace AirportStorage.DataAcces.Tests
 {
-    /// <summary>
-    /// Para ver si logro el merge
-    /// </summary>
+    [TestClass]
     public class StoreTests
     {
         private IStoreRepository _storeRepository;

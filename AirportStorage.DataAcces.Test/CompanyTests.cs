@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace AirportStorage.DataAcces.Tests
 {
+    [TestClass]
     public class CompanyTests
     {
         private ICompanyRepository _companyRepository;
