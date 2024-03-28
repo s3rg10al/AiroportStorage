@@ -1,4 +1,6 @@
 ﻿using AirportStorage.DataAcces.Tests.Utilities;
+using AirportStorage.DataAccess.Abstract.Companys;
+using AirportStorage.DataAccess.Abstract.Stores;
 using AirportStorage.DataAccess.Abstract.Workshops;
 using AirportStorage.DataAccess.Repositories;
 using AirportStorage.Domain.Entities.company;
@@ -21,17 +23,21 @@ public class WorkshopTest
     {
         _WorkshopRepository = new ApliccationRepository(ConnectionStringProvider.GetConnectionString());
         }
-    [DataRow(10, store, company)]
+    [DataRow(10, 1, 1)]
     [TestMethod]
-    public void Can_Create_Workshop(uint ability, Store store, Company company)
+    public void Can_Create_Workshop(uint ability, int storeId, int companyId)
     {
         //Arrage
         _WorkshopRepository.BeginTransaction();
+        Store store = ((IStoreRepository)_WorkshopRepository).GetStore(storeId);
+        Assert.IsNotNull(store);
+        Company company = ((ICompanyRepository)_WorkshopRepository).GetCompany(companyId);
+        Assert.IsNotNull(company);
 
         //Execute
         Workshop newWorkshop = _WorkshopRepository.CreateWorkshop(ability, store, company);
         _WorkshopRepository.PartialCommit();//Generando id del nuevo elemento.
-        Workshop? loadedWorkshop = _WorkshopRepository.Get(newWorkshop.Id);
+        Workshop? loadedWorkshop = _WorkshopRepository.GetWorkshop(newWorkshop.Id);
         _WorkshopRepository.CommitTransaction();
 
         // Assert
@@ -48,31 +54,34 @@ public class WorkshopTest
         _WorkshopRepository.BeginTransaction();
 
         //Execute
-        var loadedWorkshop = _WorkshopRepository.Get(id);
+        var loadedWorkshop = _WorkshopRepository.GetWorkshop(id);
         _WorkshopRepository.CommitTransaction();
 
         //Assert
         Assert.IsNotNull(loadedWorkshop);
     }
-    [DataRow(10, store, company)]
+    [DataRow(10, 15, true)]
     [TestMethod]
-    public void Can_Update_Workshop(int id, uint ability, Store store, Company company)
+    public void Can_Update_Workshop(int id, uint ability, bool HayCap)
     {
         //Arrange
         _WorkshopRepository.BeginTransaction();
+        var workshops = _WorkshopRepository.GetAllWorkshop();
+        Assert.IsNotNull(workshops);
+        Workshop workshop = workshops.ElementAt(id);
+        Assert.IsNotNull(workshop);
 
         //Execute
-        var loadWorkshop = _WorkshopRepository.Get(id);
-        Assert.IsNotNull(loadWorkshop);
-        var newWorkshop = new Workshop(ability, store, company) { Id = loadWorkshop.Id };
-        _WorkshopRepository.Update(newWorkshop);
-        var modifyedWorkshop = _WorkshopRepository.Get(id);
-        _WorkshopRepository.CommitTransaction();
+        workshop.Ability = ability;
+        workshop.IsAbility = HayCap;
+        _WorkshopRepository.Update(workshop);
+        _WorkshopRepository.PartialCommit();
 
         //Assert
-        Assert.AreEqual(modifyedWorkshop.Ability, ability);
-        Assert.AreEqual(modifyedWorkshop.Store, store);
-        Assert.AreEqual(modifyedWorkshop.company, company);
+        Workshop updatedWorkshop = _WorkshopRepository.GetWorkshop(workshop.Id);
+        Assert.AreEqual(updatedWorkshop.Ability, workshop.Ability);
+        Assert.AreEqual(updatedWorkshop.IsAbility, workshop.IsAbility);
+
     }
     [DataRow(1)]
     [TestMethod]
@@ -82,11 +91,11 @@ public class WorkshopTest
         _WorkshopRepository.BeginTransaction();
 
         //Execute
-        var loadedWorkshop = _WorkshopRepository.Get(id);
+        var loadedWorkshop = _WorkshopRepository.GetWorkshop(id);
         Assert.IsNotNull(loadedWorkshop);
         _WorkshopRepository.Delete(loadedWorkshop);
         _WorkshopRepository.PartialCommit();
-        loadedWorkshop = _WorkshopRepository.Get(id);
+        loadedWorkshop = _WorkshopRepository.GetWorkshop(id);
         _WorkshopRepository.CommitTransaction();
 
         //Assert

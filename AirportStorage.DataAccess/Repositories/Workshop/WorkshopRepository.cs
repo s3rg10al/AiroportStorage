@@ -19,7 +19,7 @@ namespace AirportStorage.DataAccess.Repositories
             _context.Add(workshop);
             return workshop;
         }
-        Workshop? IWorkshopRepository.Get(int id)
+        Workshop? IWorkshopRepository.GetWorkshop(int id)
         {
             return _context.Set<Workshop>().Find(id);
         }

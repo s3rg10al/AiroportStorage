@@ -22,7 +22,7 @@ namespace AirportStorage.DataAccess.Abstract.Stores
         /// <returns></returns>
         Store CreateStore(uint cantPiezas, DateTime lastInv, Workshop workshop);
 
-        Store? Get(int id);
+        Store? GetStore(int id);
 
         /// <summary>
         /// Obtien todos los Store en base de datos

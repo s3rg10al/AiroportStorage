@@ -34,7 +34,7 @@ namespace AirportStorage.DataAcces.Tests
             //Execute
             Company newCompany = _companyRepository.Create(InitialCountry);
             _companyRepository.PartialCommit();  //generando id 
-            Company? loadedCompany = _companyRepository.Get(newCompany.Id);
+            Company? loadedCompany = _companyRepository.GetCompany(newCompany.Id);
             _companyRepository.CommitTransaction();
 
             //Assert
@@ -54,7 +54,7 @@ namespace AirportStorage.DataAcces.Tests
             _companyRepository.BeginTransaction();
 
             // Execute
-            var loadedCompany = _companyRepository.Get(id);
+            var loadedCompany = _companyRepository.GetCompany(id);
             _companyRepository.CommitTransaction();
 
             //Assert
@@ -70,11 +70,11 @@ namespace AirportStorage.DataAcces.Tests
             _companyRepository.BeginTransaction();
 
             //Execute
-            var loadedCompany = _companyRepository.Get(id);
+            var loadedCompany = _companyRepository.GetCompany(id);
             Assert.IsNotNull(loadedCompany);
             var newCompany = new Company(InitialCountry) { Id = loadedCompany.Id };
             _companyRepository.Update(newCompany);
-            var modifyedCompany = _companyRepository.Get(id);
+            var modifyedCompany = _companyRepository.GetCompany(id);
             _companyRepository.CommitTransaction();
 
             //Assert
@@ -92,11 +92,11 @@ namespace AirportStorage.DataAcces.Tests
             _companyRepository.BeginTransaction();
 
             //Execute
-            var loadedCompany = _companyRepository.Get(id);
+            var loadedCompany = _companyRepository.GetCompany(id);
             Assert.IsNotNull(loadedCompany);
             _companyRepository.Delete(loadedCompany);
             _companyRepository.PartialCommit();
-            loadedCompany = _companyRepository.Get(id);
+            loadedCompany = _companyRepository.GetCompany(id);
             _companyRepository.CommitTransaction();
 
             //Assert

@@ -22,7 +22,7 @@ namespace AirportStorage.DataAccess.Repositories
         }
 
 
-        Company? ICompanyRepository.Get(int id)
+        Company? ICompanyRepository.GetCompany(int id)
         {
             return _context.Set<Company>().Find(id);
         }

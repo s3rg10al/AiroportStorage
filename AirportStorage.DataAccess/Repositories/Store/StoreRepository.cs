@@ -18,7 +18,7 @@ namespace AirportStorage.DataAccess.Repositories
             _context.Add(store);
             return store;
         }
-        Store? IStoreRepository.Get(int id)
+        Store? IStoreRepository.GetStore(int id)
         {
             return _context.Set<Store>().Find(id);
         }

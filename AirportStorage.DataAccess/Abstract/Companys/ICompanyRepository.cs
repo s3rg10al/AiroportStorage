@@ -22,7 +22,7 @@ namespace AirportStorage.DataAccess.Abstract.Companys
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Company? Get(int id);
+        Company? GetCompany(int id);
 
         /// <summary>
         /// Actualiza los parametros de una compagnia en BD

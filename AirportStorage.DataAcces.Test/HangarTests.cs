@@ -33,7 +33,7 @@ namespace AirportStorage.DataAcces.Tests
         {
             //Arrange
             _hangarRepository.BeginTransaction();
-            Company company = ((ICompanyRepository)_hangarRepository).Get(CompanyId);
+            Company company = ((ICompanyRepository)_hangarRepository).GetCompany(CompanyId);
             Assert.IsNotNull(company);
 
             //Execute

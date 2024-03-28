@@ -1,9 +1,12 @@
 ﻿using AirportStorage.DataAcces.Tests.Utilities;
 using AirportStorage.DataAccess.Abstract.Stores;
+using AirportStorage.DataAccess.Abstract.Workshops;
 using AirportStorage.DataAccess.Repositories;
 using AirportStorage.Domain.Entities.Store;
+using AirportStorage.Domain.Entities.Workshop;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 
 namespace AirportStorage.DataAcces.Tests
 {
@@ -20,24 +23,26 @@ namespace AirportStorage.DataAcces.Tests
             _storeRepository = new ApliccationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow(200,9.54)]//como se pasa un date time?
-        [DataRow(300, 9.14)]
+        [DataRow(200,9.54, 2)]//como se pasa un date time?
+        [DataRow(300, 9.14, 1)]
         [TestMethod]
-        public void Can_Create_Store(uint cantPiezas, DateTime lastInv)//falta ver si recibe workshop
+        public void Can_Create_Store(uint cantPiezas, DateTime lastInv, int workshopsId)
         {
             //Arrange
             _storeRepository.BeginTransaction();
+            Workshop workshop = ((IWorkshopRepository)_storeRepository).GetWorkshop(workshopsId);
+            Assert.IsNotNull(workshop);
 
             //Execute
-            Store newStore = _storeRepository.CreateStore(cantPiezas,lastInv);
-            _storeRepository.PartialCommit();  //generando id 
-            Store? loadedStore = _storeRepository.Get(newStore.Id);
+            Store store = (Store)_storeRepository.CreateStore(cantPiezas, lastInv, workshop);
+            _storeRepository.PartialCommit();
+            var loadedstore = _storeRepository.GetStore(store.Id);
             _storeRepository.CommitTransaction();
 
             //Assert
-            Assert.IsNotNull(loadedStore);
-            Assert.AreEqual(loadedStore.CantPiezas, cantPiezas);
-            Assert.AreEqual(loadedStore.UltimoInv, lastInv);
+            Assert.IsNotNull(loadedstore);
+            Assert.AreEqual(loadedstore.CantPiezas, store.CantPiezas );
+            Assert.AreEqual(loadedstore.UltimoInv, store.UltimoInv );
 
 
         }
@@ -52,7 +57,7 @@ namespace AirportStorage.DataAcces.Tests
             _storeRepository.BeginTransaction();
 
             // Execute
-            var loadedStore = _storeRepository.Get(id);
+            var loadedStore = _storeRepository.GetStore(id);
             _storeRepository.CommitTransaction();
 
             //Assert
@@ -62,24 +67,29 @@ namespace AirportStorage.DataAcces.Tests
         [DataRow(1,400, 2.54)]
         [DataRow(2,500,9.24)]
         [TestMethod]
-        public void Can_Update_Store(int id, uint cantPiezas, DateTime lastInv, workshop)
+        public void Can_Update_Store(int id, uint cantPiezas, DateTime lastInv)
         {
             //Arrange
             _storeRepository.BeginTransaction();
+            var stores = _storeRepository.GetAllStore();
+            Assert.IsNotNull(stores);
+            Store store = stores.ElementAt(id);
+            Assert.IsNotNull(store);
+
 
             //Execute
-            var loadedStore = _storeRepository.Get(id);
-            Assert.IsNotNull(loadedStore);
-            var newStore = new Store(cantPiezas,lastInv,workshop) { Id = loadedStore.Id };
-            _storeRepository.Update(newStore);
-            var modifyedStore = _storeRepository.Get(id);
-            _storeRepository.CommitTransaction();
+            store.CantPiezas = cantPiezas;
+            store.UltimoInv = lastInv;
+            _storeRepository.Update(store);
+            _storeRepository.PartialCommit();
 
             //Assert
-            Assert.AreEqual(modifyedStore.CantPiezas,cantPiezas);
+            Store updatedStore = _storeRepository.GetStore(store.Id);
+            Assert.IsNotNull(updatedStore);
+            Assert.AreEqual(updatedStore.CantPiezas, store.CantPiezas);
+            Assert.AreEqual(updatedStore.UltimoInv, store.UltimoInv);
 
-
-
+          
         }
 
         [DataRow(1)]
@@ -90,11 +100,11 @@ namespace AirportStorage.DataAcces.Tests
             _storeRepository.BeginTransaction();
 
             //Execute
-            var loadedStore = _storeRepository.Get(id);
+            var loadedStore = _storeRepository.GetStore(id);
             Assert.IsNotNull(loadedStore);
             _storeRepository.Delete(loadedStore);
             _storeRepository.PartialCommit();
-            loadedStore = _storeRepository.Get(id);
+            loadedStore = _storeRepository.GetStore(id);
             _storeRepository.CommitTransaction();
 
             //Assert

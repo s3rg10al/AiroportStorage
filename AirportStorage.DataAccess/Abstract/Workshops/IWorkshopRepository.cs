@@ -22,7 +22,7 @@ namespace AirportStorage.DataAccess.Abstract.Workshops
         /// <returns></returns>
         Workshop CreateWorkshop(uint ability, Store store, Company company);
 
-        Workshop? Get(int id);
+        Workshop? GetWorkshop(int id);
 
         /// <summary>
         /// Obtien todos los Workshop en base de datos
